@@ -1,8 +1,8 @@
-node default{
+node default {
  
 }
 
-node 'master.puppet.vm'{
+node 'master.puppet.vm' {
   include role::master_server
   file {'/root/README':
     ensure  => file,
@@ -10,10 +10,10 @@ node 'master.puppet.vm'{
   }
 }
 
-node /^web/{
+node /^web/ {
   include role::app_server
 }
 
-node /^db/{
+node /^db/ {
   include role::db_server
 }
