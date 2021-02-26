@@ -1,4 +1,4 @@
-class osquery::init (
+class osquery (
   String $version                             = 'latest',
   Enum['stopped', 'running'] $service         = 'running',
   Stdlib::Unixpath  $config_file              = '/etc/osquery/osquery.conf',
@@ -19,7 +19,7 @@ class osquery::init (
 ) {
 
   package { 'osquery':
-    ensure   => $osquery::init::version,
+    ensure   => $osquery::version,
   }
   
   user { 'osquery':
@@ -130,7 +130,7 @@ file { $cert_file:
   }
 
   service { 'osqueryd':
-    ensure     => $osquery::init::service,
+    ensure     => $osquery::service,
     enable     => true,
     hasrestart => true,
     hasstatus  => true,
