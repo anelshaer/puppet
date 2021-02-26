@@ -1,5 +1,5 @@
 class osquery (
-  String $version                             = 'latest',
+  String $version                             = 'present',
   Enum['stopped', 'running'] $service         = 'running',
   Stdlib::Unixpath  $config_file              = '/etc/osquery/osquery.conf',
   Stdlib::Unixpath  $enroll_secret_path       = '/etc/osquery/osquery_enroll_secret',
