@@ -1,4 +1,4 @@
-FLAG_FILE="<%= scope.lookupvar('osquery::init::osquery_flagfile') %>"
-CONFIG_FILE="<%= scope.lookupvar('osquery::init::config_file') %>"
+FLAG_FILE="<%= scope.lookupvar('osquery::osquery_flagfile') %>"
+CONFIG_FILE="<%= scope.lookupvar('osquery::config_file') %>"
 LOCAL_PIDFILE="/var/osquery/osqueryd.pidfile"
 PIDFILE="/var/run/osqueryd.pidfile"
