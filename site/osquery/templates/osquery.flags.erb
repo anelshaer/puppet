@@ -1,0 +1,36 @@
+--host_identifier=hostname
+--enroll_tls_endpoint=/api/v1/osquery/enroll
+--config_plugin=tls
+--config_tls_endpoint=/api/v1/osquery/config
+--config_tls_refresh=60
+--config_tls_max_attempts=60
+--disable_distributed=false
+--disable_logging=false
+--distributed_plugin=tls
+--distributed_interval=60
+--distributed_tls_max_attempts=3
+--distributed_tls_read_endpoint=/api/v1/kolide/distributed/read
+--distributed_tls_write_endpoint=/api/v1/kolide/distributed/write
+--logger_plugin=filesystem
+--logger_path=<%= scope.lookupvar('osquery::init::logger_path') %>
+--database_path=<%= scope.lookupvar('osquery::init::database_path') %>
+--schedule_splay_percent=10
+--pack_refresh_interval=60
+--watchdog_level=0
+--config_refresh=60
+--utc
+--force=true
+<% if scope.lookupvar('osquery::init::enable_audit') == true -%>
+--audit_allow_config=true
+--audit_allow_sockets=true
+--audit_persist=true
+--disable_audit=false
+--events_max=<%= scope.lookupvar('osquery::init::events_max') %>
+--events_expiry=<%= scope.lookupvar('osquery::init::events_expiry') %>
+--disable_events=false
+--audit_persist
+--events_optimize=true
+<% end -%>
+--enroll_secret_path=<%= scope.lookupvar('osquery::init::enroll_secret_path') %>
+--tls_server_certs=<%= scope.lookupvar('osquery::init::cert_file') %>
+--tls_hostname=<%= scope.lookupvar('osquery::init::tls_hostname') %>
