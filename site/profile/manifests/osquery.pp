@@ -1,6 +1,6 @@
 class profile::osquery (
   Boolean $enable                      = lookup('profile::osquery::enable', Boolean, 'deep', true),
-  String  $version                     = lookup('profile::osquery::version', String, undef, 'latest'),
+  String  $version                     = lookup('profile::osquery::version', String, undef, 'installed'),
   Enum['stopped', 'running'] $service  = lookup('profile::osquery::service', String, undef, 'running'),
   String  $cert                        = lookup('profile::osquery::cert', String, undef, ''),
   String  $enroll_secret               = lookup('profile::osquery::enroll_secret', String, undef, ''),
