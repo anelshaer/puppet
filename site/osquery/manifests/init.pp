@@ -18,7 +18,7 @@ class osquery (
   Boolean $enable_audit                       = true,
 ) {
 
-  yumrepo { 'osquery-s3-rpm.repo':
+  yumrepo { 'osquery-s3-rpm':
     enabled     => 1,
     descr       => 'osquery RPM repository',
     baseurl     => 'https://pkg.osquery.io/rpm/osquery-s3-rpm.repo',
@@ -30,7 +30,7 @@ class osquery (
   
   package { 'osquery':
     ensure   => $osquery::version,
-     require => Yumrepo['osquery-s3-rpm.repo'],
+     require => Yumrepo['osquery-s3-rpm'],
   }
   
   user { 'osquery':
