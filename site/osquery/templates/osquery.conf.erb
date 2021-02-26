@@ -1,0 +1,11 @@
+{
+    "options": {
+        "logger_plugin": "filesystem"
+    },
+    "schedule": {
+        "system_info": {
+            "query": "SELECT hostname, cpu_brand, physical_memory FROM system_info;",
+            "interval": 3600
+        }
+    }
+}
