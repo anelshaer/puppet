@@ -21,7 +21,11 @@ class osquery::init (
   package { 'osquery':
     ensure   => $osquery::init::version,
   }
-
+  
+  user { 'osquery':
+  ensure   => present,
+  }
+  
   file { '/etc/osquery':
     ensure => directory,
     owner  => 'osquery',
