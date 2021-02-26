@@ -13,8 +13,8 @@ class profile::osquery (
     class { '::osquery':
       version              => $version,
       service              => $service,
-      agent_cert           => $cert,
-      agent_enroll_secret  => $enroll_secret,
+      cert                 => $cert,
+      enroll_secret        => $enroll_secret,
       tls_hostname         => $tls_hostname,
       events_max           => $events_max,
       events_expiry        => $events_expiry,
