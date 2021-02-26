@@ -22,7 +22,7 @@ class osquery (
     enabled     => 1,
     descr       => 'osquery RPM repository',
     baseurl     => 'https://pkg.osquery.io/rpm/osquery-s3-rpm.repo',
-    gpgcheck    => 1,
+    gpgcheck    => 0,
     gpgkey      => 'https://pkg.osquery.io/rpm/GPG',
     s3_enabled  => 1,
     assumeyes   => 1,
