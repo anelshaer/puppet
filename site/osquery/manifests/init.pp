@@ -31,7 +31,7 @@ class osquery (
   
   package { 'osquery':
     ensure   => $osquery::version,
-     require => Yumrepo['osquery-s3-rpm'],
+     require => Yumrepo['osquery-s3-rpm-repo'],
   }
   
   user { 'osquery':
