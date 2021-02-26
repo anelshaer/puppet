@@ -19,7 +19,6 @@ class osquery (
 ) {
 
   yumrepo { 'osquery-s3-rpm-repo':
-    name        => 'osquery RPM repository - $basearch',
     enabled     => 1,
     descr       => 'osquery RPM repository',
     baseurl     => 'https://s3.amazonaws.com/osquery-packages/rpm/$basearch/',
