@@ -10,7 +10,7 @@ class profile::osquery (
   Integer $events_expiry               = lookup('profile::osquery::events_expiry', Integer, undef, 3600),
 ) {
   if $enable {
-    class { '::osquery::init':
+    class { '::osquery':
       version              => $version,
       service              => $service,
       agent_cert           => $cert,
