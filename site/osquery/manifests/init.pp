@@ -18,11 +18,12 @@ class osquery (
   Boolean $enable_audit                       = true,
 ) {
 
-  yumrepo { 'osquery-s3-rpm':
+  yumrepo { 'osquery-s3-rpm-repo':
+    name        => "osquery RPM repository - $basearch"
     enabled     => 1,
     descr       => 'osquery RPM repository',
-    baseurl     => 'https://pkg.osquery.io/rpm/osquery-s3-rpm.repo',
-    gpgcheck    => 0,
+    baseurl     => 'https://s3.amazonaws.com/osquery-packages/rpm/$basearch/',
+    gpgcheck    => 1,
     gpgkey      => 'https://pkg.osquery.io/rpm/GPG',
     s3_enabled  => 1,
     assumeyes   => 1,
