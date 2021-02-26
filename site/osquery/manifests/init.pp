@@ -24,14 +24,19 @@ class osquery (
     descr       => 'osquery RPM repository',
     baseurl     => 'https://s3.amazonaws.com/osquery-packages/rpm/$basearch/',
     gpgcheck    => 1,
-    gpgkey      => 'https://pkg.osquery.io/rpm/GPG',
+    gpgkey      => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-osquery',
     s3_enabled  => 1,
     assumeyes   => 1,
   }
   
+  file { '/etc/pki/rpm-gpg/RPM-GPG-KEY-osquery':
+    ensure => present,
+    source => 'https://pkg.osquery.io/rpm/GPG',
+  }
+  
   package { 'osquery':
     ensure   => $osquery::version,
-     require => Yumrepo['osquery-s3-rpm-repo'],
+     require => [File['/etc/pki/rpm-gpg/RPM-GPG-KEY-osquery'],Yumrepo['osquery-s3-rpm-repo']],
   }
   
   user { 'osquery':
