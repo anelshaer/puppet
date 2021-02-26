@@ -54,7 +54,7 @@ class osquery (
     mode   => '0775',
   }
 
-  systemd::unit_file { 'osqueryd.service':
+  file { '/etc/systemd/system/osqueryd.service':
     ensure => present,
     source => 'puppet:///modules/osquery/osqueryd.service',
   }
@@ -134,7 +134,6 @@ file { $cert_file:
     enable     => true,
     hasrestart => true,
     hasstatus  => true,
-    require    => Package['osquery'],
-    subscribe  => Systemd::Unit_file['osqueryd.service'],
+    require    => [File['/etc/systemd/system/osqueryd.service'],Package['osquery']],
   }
 }
