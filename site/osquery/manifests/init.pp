@@ -103,7 +103,7 @@ file { $cert_file:
     group   => 'osquery',
     purge   => true,
     force   => true,
-    content => template('osquery/init/osqueryd.erb'),
+    content => template('osquery/osqueryd.erb'),
     notify  => Service['osqueryd'],
   }
 
@@ -113,14 +113,14 @@ file { $cert_file:
     owner   => 'osquery',
     group   => 'osquery',
     links   => follow,
-    content => template('osquery/init/osquery.conf.erb'),
+    content => template('osquery/osquery.conf.erb'),
     notify  => Service['osqueryd'],
   }
 
   file { $osquery_flagfile:
     ensure  => present,
     recurse => true,
-    content => template('osquery/int/osquery.flags.erb'),
+    content => template('osquery/osquery.flags.erb'),
     mode    => '0440',
     owner   => 'osquery',
     group   => 'osquery',
