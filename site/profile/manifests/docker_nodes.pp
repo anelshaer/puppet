@@ -37,7 +37,7 @@ class profile::docker_nodes {
     ensure           => present,
     ports            => ['443:443'],
     extra_parameters => ['--interactive'],
-    require => Docker::Image['centos_fleetdm'],
+    require => [Docker::Image['centos_fleetdm'],Docker_compose['fleetdm']],
   }
   
   docker_compose { 'fleetdm':
