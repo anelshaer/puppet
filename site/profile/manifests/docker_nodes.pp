@@ -7,7 +7,7 @@ class profile::docker_nodes {
     image_tag   => '7',
     docker_file => '/tmp/Dockerfile',
     subscribe   => File['/tmp/Dockerfile'],
-    require     => Class['docker'],
+    require     => [File['/tmp/Dockerfile'],Class['docker']],
   }
 
   docker::image { 'centos':
