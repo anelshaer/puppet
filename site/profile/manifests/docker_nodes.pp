@@ -4,7 +4,12 @@ class profile::docker_nodes {
  file { '/root/Dockerfile':
   ensure => file,
   source => 'puppet:///modules/fleetdm/Dockerfile',
-}
+  }
+ 
+ file { '/root/docker-compose.yml':
+  ensure => file,
+  source => 'puppet:///modules/fleetdm/docker-compose.yml',
+  }
 
   docker::image { 'centos_fleetdm':
     ensure      => present,
@@ -35,8 +40,9 @@ class profile::docker_nodes {
     require => Docker::Image['centos_fleetdm'],
   }
   
-  docker::run { 'helloworld':
-  image   => 'base',
-  command => '/bin/sh -c "while true; do echo hello world; sleep 1; done"',
-}
+  docker_compose { 'fleetdm':
+    compose_files => ['/root/docker-compose.yml'],
+    ensure  => present,
+    subscribe   => File['/root/docker-compose.yml'],
+  }
 }
