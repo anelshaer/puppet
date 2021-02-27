@@ -42,7 +42,7 @@ services:
       FLEET_SERVER_CERT:    '/etc/fleet/fleet.crt'
       FLEET_SERVER_KEY:     '/etc/fleet/fleet.key'
       FLEET_REDIS_ADDRESS:  'redis.puppet.vm:6379'
-      FLEET_LOGGING_JSON:   true      
+      FLEET_LOGGING_JSON:   'true'   
     ports:
       - "443:443"
       
