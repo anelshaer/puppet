@@ -3,11 +3,11 @@ class profile::docker_nodes {
   
    # fetch the docker image
   docker::image { 'centos_fleetdm':
-    ensure    => 'present',
-    image_tag => '7',
+    ensure      => 'present',
+    image_tag   => '7',
     docker_file => '/tmp/Dockerfile',
-    subscribe => File['/tmp/Dockerfile'],
-    require   => Class['docker'],
+    subscribe   => File['/tmp/Dockerfile'],
+    require     => Class['docker'],
   }
 
   docker::image { 'centos':
