@@ -5,8 +5,8 @@ services:
     image: mysql:5.7
     container_name: mysql.puppet.vm
     volumes:
-      - mysql-persistent-volume:/tmp
-    command: mysqld --datadir=/tmp/mysqldata --slow_query_log=1 --log_output=TABLE --log-queries-not-using-indexes --event-scheduler=ON
+      - mysql-persistent-volume:/var/fleet
+    command: mysqld --datadir=/var/fleet/mysqldata --slow_query_log=1 --log_output=TABLE --log-queries-not-using-indexes --event-scheduler=ON
     environment: &mysql-default-environment
       MYSQL_ROOT_PASSWORD: toor
       MYSQL_DATABASE: fleet
@@ -45,6 +45,9 @@ services:
       FLEET_LOGGING_JSON:   'true'   
     ports:
       - "443:443"
+    links:
+      - mysql
+      - redis
       
 volumes:
   mysql-persistent-volume:
