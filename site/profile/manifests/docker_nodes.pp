@@ -9,14 +9,14 @@ class profile::docker_nodes {
   }
   
   docker::run {'osquery01.puppet.vm':
-    image            => 'centos',
+    image            => 'centos:7',
     ensure           => present,
     detach           => true,
     extra_parameters => ['--interactive'],
     require => Docker::Image['centos'],
   }
   docker::run {'fleet.puppet.vm':
-    image            => 'centos',
+    image            => 'centos:7',
     ensure           => present,
     ports            => ['443:443'],
     extra_parameters => ['--interactive'],
