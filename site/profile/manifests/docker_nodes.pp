@@ -1,13 +1,17 @@
 class profile::docker_nodes {
   include docker
   
-   # fetch the docker image
+ file { '/tmp/Dockerfile':
+  ensure => file,
+  source => 'puppet:///modules/fleetdm/Dockerfile',
+}
+
   docker::image { 'centos_fleetdm':
     ensure      => 'present',
     image_tag   => '7',
     docker_file => '/tmp/Dockerfile',
     subscribe   => File['/tmp/Dockerfile'],
-    require     => [File['/tmp/Dockerfile'],Class['docker']],
+    require     => Class['docker'],
   }
 
   docker::image { 'centos':
@@ -16,11 +20,6 @@ class profile::docker_nodes {
     require   => Class['docker'],
   }
   
- file { '/tmp/Dockerfile':
-  ensure => file,
-  source => 'puppet:///modules/fleetdm/Dockerfile',
-}
-
   docker::run {'osquery01.puppet.vm':
     image            => 'centos:7',
     ensure           => present,
