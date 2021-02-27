@@ -5,8 +5,8 @@ MAINTAINER Ahmed Elshaer
 RUN groupadd fleet && useradd fleet -g fleet
 RUN yum install unzip && \
     yum clean all && \
-    rm -rf /var/cache/yum && \
-    mkdir /fleet/ && cd /fleet/
+    rm -rf /var/cache/yum
+RUN mkdir /fleet/ && cd /fleet/
 ADD https://github.com/fleetdm/fleet/releases/download/3.8.0/fleet.zip .
 RUN unzip fleet.zip && \
     mv linux/fleet* /usr/bin/ && \
