@@ -4,7 +4,7 @@ class profile::docker_nodes {
    # fetch the docker image
   docker::image { 'centos':
     ensure    => 'present',
-    image_tag => '7'
+    image_tag => '7',
     require   => Class['docker'],
   }
   
