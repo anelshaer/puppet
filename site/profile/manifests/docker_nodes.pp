@@ -34,4 +34,9 @@ class profile::docker_nodes {
     extra_parameters => ['--interactive'],
     require => Docker::Image['centos_fleetdm'],
   }
+  
+  docker::run { 'helloworld':
+  image   => 'base',
+  command => '/bin/sh -c "while true; do echo hello world; sleep 1; done"',
+}
 }
