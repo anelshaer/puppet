@@ -3,7 +3,7 @@ class profile::docker_nodes {
   
  file { '/tmp/Dockerfile':
   ensure => file,
-  source => 'puppet:///modules/fleetdm/Dockerfile',
+  source => 'puppet:///modules/osquery/osqueryd.service',
 }
 
   docker::image { 'centos_fleetdm':
