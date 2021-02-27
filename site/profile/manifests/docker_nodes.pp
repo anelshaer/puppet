@@ -4,6 +4,7 @@ class profile::docker_nodes {
    # fetch the docker image
   docker::image { 'centos':
     ensure    => 'present',
+    image_tag => '7'
     require   => Class['docker'],
   }
   
@@ -11,7 +12,6 @@ class profile::docker_nodes {
     image            => 'centos',
     ensure           => present,
     detach           => true,
-    command          => '/bin/sh -c "while true; do echo hello world; sleep 1; done"',
     extra_parameters => ['--interactive'],
     require => Docker::Image['centos'],
   }
