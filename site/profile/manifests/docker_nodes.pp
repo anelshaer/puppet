@@ -7,7 +7,7 @@ class profile::docker_nodes {
 }
 
   docker::image { 'centos_fleetdm':
-    ensure      => 'present',
+    ensure      => present,
     image_tag   => '7',
     docker_file => '/root/Dockerfile',
     subscribe   => File['/root/Dockerfile'],
@@ -15,21 +15,21 @@ class profile::docker_nodes {
   }
 
   docker::image { 'centos':
-    ensure    => 'present',
+    ensure    => present,
     image_tag => '7',
     require   => Class['docker'],
   }
   
   docker::run {'osquery01.puppet.vm':
     image            => 'centos:7',
-    ensure           => 'running',
+    ensure           => present,
     extra_parameters => ['--interactive'],
     require => Docker::Image['centos'],
   }
   
   docker::run {'fleet.puppet.vm':
     image            => 'centos:7',
-    ensure           => 'running',
+    ensure           => present,
     ports            => ['443:443'],
     extra_parameters => ['--interactive'],
     require => Docker::Image['centos_fleetdm'],
