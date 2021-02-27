@@ -1,17 +1,17 @@
 class profile::docker_nodes {
   include docker
   
- file { '/tmp/Dockerfile':
+ file { '/root/Dockerfile':
   ensure => file,
-  source => 'puppet:///modules/osquery/osqueryd.service',
+  source => 'puppet:///modules/fleetdm/Dockerfile',
 }
 
   docker::image { 'centos_fleetdm':
     ensure      => 'present',
     image_tag   => '7',
-    docker_file => '/tmp/Dockerfile',
-    subscribe   => File['/tmp/Dockerfile'],
-    require     => [File['/tmp/Dockerfile'],Class['docker']],
+    docker_file => '/root/Dockerfile',
+    subscribe   => File['/root/Dockerfile'],
+    require     => [File['/root/Dockerfile'],Class['docker']],
   }
 
   docker::image { 'centos':
