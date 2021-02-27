@@ -3,6 +3,7 @@ version: '2'
 services:
   mysql:
     image: mysql:5.7
+    container_name: mysql.puppet.vm
     volumes:
       - mysql-persistent-volume:/tmp
     command: mysqld --datadir=/tmp/mysqldata --slow_query_log=1 --log_output=TABLE --log-queries-not-using-indexes --event-scheduler=ON
@@ -16,12 +17,14 @@ services:
 
   mailhog:
     image: mailhog/mailhog:latest
+    container_name: mailhog.puppet.vm
     ports:
       - "8025:8025"
       - "1025:1025"
 
   redis:
     image: redis:3.2.4
+    container_name: redis.puppet.vm
     ports:
       - "6379:6379"
       
