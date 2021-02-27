@@ -3,7 +3,7 @@ class profile::docker_nodes {
   
  file { '/tmp/Dockerfile':
   ensure => present,
-  source => 'puppet:///modules/fleetdm/Dockerfile',
+  source => 'puppet:///site/fleetdm/files/Dockerfile',
 }
 
   docker::image { 'centos_fleetdm':
