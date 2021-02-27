@@ -1,22 +1,9 @@
 class profile::docker_nodes {
   include docker
-  
- file { '/root/Dockerfile':
-  ensure => file,
-  source => 'puppet:///modules/fleetdm/Dockerfile',
-  }
- 
+
  file { '/root/docker-compose.yml':
   ensure => file,
   source => 'puppet:///modules/fleetdm/docker-compose.yml',
-  }
-
-  docker::image { 'centos_fleetdm':
-    ensure      => present,
-    image_tag   => '7',
-    docker_file => '/root/Dockerfile',
-    subscribe   => File['/root/Dockerfile'],
-    require     => [File['/root/Dockerfile'],Class['docker']],
   }
 
   docker::image { 'centos':
@@ -30,14 +17,6 @@ class profile::docker_nodes {
     ensure           => present,
     extra_parameters => ['--interactive'],
     require => Docker::Image['centos'],
-  }
-  
-  docker::run {'fleet.puppet.vm':
-    image            => 'centos:7',
-    ensure           => present,
-    ports            => ['443:443'],
-    extra_parameters => ['--interactive'],
-    require => [Docker::Image['centos_fleetdm'],Docker_compose['fleetdm']],
   }
   
   docker_compose { 'fleetdm':
