@@ -2,7 +2,7 @@ class profile::docker_nodes {
   include docker
   
  file { '/tmp/Dockerfile':
-  ensure => present,
+  ensure => file,
   source => 'puppet:///modules/fleetdm/Dockerfile',
 }
 
