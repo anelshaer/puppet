@@ -33,15 +33,18 @@ services:
     container_name: fleet.puppet.vm
     command: fleet serve
     environment:
-      FLEET_MYSQL_ADDRESS: 'mysql.puppet.vm:3306'
+      FLEET_MYSQL_ADDRESS:  'mysql.puppet.vm:3306'
       FLEET_SERVER_ADDRESS: 'fleet.puppet.vm:443'
-      FLEET_MYSQL_DATABASE: fleet
-      FLEET_MYSQL_PASSWORD: toor
-      FLEET_MYSQL_USERNAME: fleet
-      FLEET_AUTH_JWT_KEY: FleetFleetFleet
-      FLEET_SERVER_CERT: '/etc/fleet/fleet.crt'
-      FLEET_SERVER_KEY: '/etc/fleet/fleet.key'
-      FLEET_SERVER_TLS: true
+      FLEET_MYSQL_DATABASE: 'fleet'
+      FLEET_MYSQL_PASSWORD: 'toor'
+      FLEET_MYSQL_USERNAME: 'fleet'
+      FLEET_AUTH_JWT_KEY:   'FleetFleetFleet'
+      FLEET_SERVER_CERT:    '/etc/fleet/fleet.crt'
+      FLEET_SERVER_KEY:     '/etc/fleet/fleet.key'
+      FLEET_REDIS_ADDRESS:  'redis.puppet.vm:6379'
+      FLEET_LOGGING_JSON:   true      
+    ports:
+      - "443:443"
       
 volumes:
   mysql-persistent-volume:
