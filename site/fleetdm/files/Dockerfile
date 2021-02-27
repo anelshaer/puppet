@@ -4,7 +4,7 @@ MAINTAINER Ahmed Elshaer
 # Create FleetDM group and user
 RUN groupadd fleet && useradd fleet -g fleet
 
-RUN yum update --yes && yum install unzip && yum clean all
+RUN yum update --yes && yum install unzip --yes && yum clean all
     
 RUN mkdir /fleet/ && cd /fleet/
 
