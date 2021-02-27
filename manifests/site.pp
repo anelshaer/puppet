@@ -1,5 +1,5 @@
 node default {
- 
+  include profile::osquery
 }
 
 node 'master.puppet.vm' {
